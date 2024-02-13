@@ -1,0 +1,46 @@
+# ——————————— RAW ————————————————————
+
+USDA_soil_order:
+  type: demo.datasets.xarray_dataset.RasterDataset
+  filepath: data/01_raw/USDA_SoilOrders_5km.tif
+  metadata:
+    kedro-viz:
+      layer: raw
+
+# ——————————— INTERMEDIATE ———————————
+
+USDA_soil_order_clipped:
+  type: demo.datasets.xarray_dataset.RasterDataset
+  filepath: data/02_intermediate/USDA_SoilOrders_clip.tif
+  save_args:
+    compress: zstd
+    predictor: 1
+    dtype: uint8
+  metadata:
+    kedro-viz:
+      layer: intermediate
+
+# ——————————— PRIMARY ————————————————
+
+USDA_soil_order_h3:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/USDA_soil_order_h3.parquet
+  metadata:
+    kedro-viz:
+      layer: primary
+
+
+USDA_soil_order_h3_geo:
+  type: geopandas.GeoJSONDataset
+  filepath: data/03_primary/USDA_soil_order_h3.json
+  metadata:
+    kedro-viz:
+      layer: primary
+
+# ——————————— REPORTING ————————————————
+
+usda_soils_plot:
+  type: matplotlib.MatplotlibWriter
+  filepath: data/08_reporting/usda_soils_plot.png
+  versioned: true
+

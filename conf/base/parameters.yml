@@ -1,0 +1,11 @@
+resampling:
+  pixel_size: 0.5  # in degrees, approx 55km
+  method: mode  # values are categorical
+
+bbox:
+  minx: -179
+  miny: -85
+  maxx: 179
+  maxy: 85
+
+h3_with_geometry: true
